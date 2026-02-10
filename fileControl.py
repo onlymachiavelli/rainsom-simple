@@ -15,7 +15,7 @@ def getListOfFiles(dirName):
 
     textOnly = [f for f in allFiles if f.endswith('.txt')]
 
-    print("List of files : " , textOnly)
+
     return textOnly
 
 def readFile(filePath):
