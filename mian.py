@@ -32,15 +32,44 @@ if __name__ == "__main__":
     
     currentDir = getCurrentDir()
     listOfFiles = getListOfFiles(currentDir)
-    for file in listOfFiles:
 
 
-        #read the files 
-        data = readFile(file)
+    option = ""
+    print("""
 
-        #should crypt the files 
-        createFileAndWrite(file, data)
+          1 - encrypt all the files 
+          2 - decrypt all the files
+          3 - crypt one file by id
+
+    """)
 
 
-        #delete the old files 
-        deleteFile(file)
+    option = input("Enter your option: ")
+
+    match option:
+        case "1":
+            for file in listOfFiles:
+                    #read the files 
+                data = readFile(file)
+                    #should crypt the files 
+
+                cryptedData = data 
+                createFileAndWrite(file, data)
+                    #delete the old files 
+                deleteFile(file)
+        case "2" : 
+            for file in listOfFiles:
+                    #read the files 
+                data = readFile(file)
+                        #should crypt the files 
+                createFileAndWrite(file, data)
+                        #delete the old files 
+                deleteFile(file)
+        case "3":
+            fileId = input("Enter the file id : which is the number of the file in ")
+
+            targetFile = listOfFiles[int(fileId)]
+            data = readFile(targetFile)
+            uncryptedData = data
+            createFileAndWrite(targetFile, data)
+            deleteFile(targetFile)
