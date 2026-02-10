@@ -1,4 +1,5 @@
 from fileControl import *
+from EncryptControl import *
 
 if __name__ == "__main__":
     
@@ -21,12 +22,13 @@ if __name__ == "__main__":
         case "1":
             currentDir = getCurrentDir()
             listOfFiles = getListOfFiles(currentDir)
+            key = get_valid_key()
 
             for file in listOfFiles:
                 data = readFile(file)
 
                 #YOU SHOULD CRYPT THE CODE HERE
-                cryptedData = data 
+                cryptedData = encrypt_decrypt(text, 'e', key) 
                 print("crypted data : " , cryptedData)
                 createFileAndWrite(file, data)
                 deleteFile(file)
@@ -34,10 +36,11 @@ if __name__ == "__main__":
         case "2" : 
             currentDir = getCurrentDir()
             listOfFiles = getListOfFiles(currentDir)
+            key = get_valid_key()
             for file in listOfFiles:
                 data = readFile(file)
                 #YOU SHOULD DECRYPT THE CODE HERE
-                uncryptedData = data
+                uncryptedData = encrypt_decrypt(text, 'd', key)
                 createFileAndWrite(file, uncryptedData , False)
                 deleteFile(file)
 
@@ -47,8 +50,9 @@ if __name__ == "__main__":
             fileId = input("Enter the file id : which is the number of the file in ")
             targetFile = listOfFiles[int(fileId)]
             data = readFile(targetFile)
+            key = get_valid_key()
             #YOU SHOULD CRYPT THE CODE HERE
-            cryptedData = data
+            cryptedData = encrypt_decrypt(text, 'd', key)
             createFileAndWrite(targetFile, cryptedData)
             deleteFile(targetFile)
 
@@ -60,7 +64,8 @@ if __name__ == "__main__":
             targetFile = listOfFiles[int(fileId)]   
             data = readFile(targetFile)
             #YOU SHOULD DECRYPT THE CODE HERE
-            uncryptedData = data
+            key = get_valid_key()
+            uncryptedData = plaintext = encrypt_decrypt(text, 'd', key)
             createFileAndWrite(targetFile, uncryptedData , False)        
             deleteFile(targetFile)  
         
