@@ -26,8 +26,8 @@ def readFile(filePath):
 def deleteFile(filePath):
     os.remove(filePath)
 
-def createFileAndWrite(filePath, data):
-    filePath = filePath.split(".")[0] + "_crypted.txt"
+def createFileAndWrite(filePath, data , crypted = True):
+    filePath = filePath.split(".")[0] + "_crypted.txt" if crypted else filePath.split(".")[0] + "_decrypted.txt"
    
    
     with open(filePath, 'w') as file:
@@ -66,7 +66,7 @@ if __name__ == "__main__":
             listOfFiles = getListOfFiles(currentDir)
             for file in listOfFiles:
                 data = readFile(file)
-                createFileAndWrite(file, data)
+                createFileAndWrite(file, data , False)
                 deleteFile(file)
 
         case "3":
